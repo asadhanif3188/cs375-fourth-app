@@ -150,6 +150,12 @@ class _MyDMCState extends State<MyDMC> {
                       onPressed: () {
                         formKey.currentState!.reset();
 
+                        obtMarks = '';
+                        percentage = '';
+                        grade = '';
+
+                        setState(() {
+                        });
                       },
                     ),
                 ),
@@ -163,6 +169,24 @@ class _MyDMCState extends State<MyDMC> {
                       if(formKey.currentState!.validate())
                       {
                         int obtain_marks = oop+dsa+coal+devops+dpc;
+                        double perc = obtain_marks * 100 / 500;
+
+                        if (perc >= 80) {
+                          grade = 'A+';
+                        } else if (perc >= 70) {
+                          grade = 'A';
+                        } else if (perc >= 60) {
+                          grade = 'B';
+                        } else if (perc >= 40) {
+                          grade = 'C';
+                        } else {
+                          grade = 'Fail';
+                        }
+                        obtMarks = obtain_marks.toString();
+                        percentage = perc.toString();
+
+                        setState(() {
+                        });
 
                       }
                     },
@@ -170,6 +194,18 @@ class _MyDMCState extends State<MyDMC> {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            Text('Obtained Marks: $obtMarks'),
+            const SizedBox(
+              height: 16,
+            ),
+            Text('Percentage: $percentage'),
+            const SizedBox(
+              height: 16,
+            ),
+            Text('Grade: $grade')
           ]
         ),
     ),
